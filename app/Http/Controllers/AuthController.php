@@ -9,7 +9,8 @@ class AuthController extends Controller
     public function login(Request $request) {
         $fields = $request->validate([
             'email' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'device_name'=>'required',
         ]);
 
         // Check email
@@ -21,15 +22,16 @@ class AuthController extends Controller
                 'message' => 'Bad creds'
             ], 401);
         }
+        // $token = $request->user()->createToken($request->token_name);
+        // $token = $user->createToken($fields['token'])->plainTextToken;
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        // $response = [
+        //     'data' => $user,
+        //     'token' => $token->plainTextToken,
+        // ];
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
+        // return response($response, 200);
+        return $user->createToken($fields['device_name'])->plainTextToken;
     }
     public function logout(Request $request) {
         auth()->user()->tokens()->delete();
@@ -42,7 +44,7 @@ class AuthController extends Controller
     {
         $user = auth()->user();
         $this->response['message'] = 'List user login';
-        $this->response['user']=$user;  
+        $this->response['data']=$user;  
         return response()->json($this->response,200);
     }
 }

@@ -84,8 +84,12 @@ class JuryController extends Controller
         $studentid = $req->input('studentid');
         $data=array('presentation_skill'=>$personal_skill,"content_org"=>$content_org,"demonstration_and_question"=>$demonstaration,"impression"=>$imprestion,"comment"=>$comment,"examiner"=>$examiner);
         DB::table('juryscore_reports')->insert($data);
-        DB::update(' UPDATE schedules set presentation_skill=?,content_org=? ,demonstration_and_question=?,impression=?,comment=?,examiner=? where studentid=?',[$personal_skill,$content_org,
-            $demonstaration,$imprestion,$comment,$studentid,$examiner]);
+        DB::table('schedules')->where('studentid',$studentid)->update($data);
+        // if(!DB::update(' UPDATE schedules set presentation_skill=?,content_org=? ,demonstration_and_question=?,impression=?,comment=?,examiner=? where studentid=?',[$personal_skill,$content_org,
+        // $demonstaration,$imprestion,$comment,$studentid,$examiner]))
+        // {
+        //     return response()->json(['status_code'=>200,'message'=>'bad']);
+        // }
         return response()->json(['status_code'=>200,'message'=>'success']);
     }
     public function listStudentDefense()

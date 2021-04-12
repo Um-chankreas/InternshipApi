@@ -47,6 +47,6 @@ class SchoolController extends Controller
         $response = [
             'data'=>$rating,
         ];
-        return response($response, 201);
+        return response($response, 200);
     }
 }

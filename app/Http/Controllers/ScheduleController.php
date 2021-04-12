@@ -75,8 +75,9 @@ class ScheduleController extends Controller
         $rooms = $room->map(function($item, $key){
             return ["room"=>$key,"data"=>$item];
           });
+          $room = Schedule::all();
         $this->response['message'] = 'List room of schedule';
-        $this->response['data']=$rooms;
+        $this->response['data']=$room;
 
         return response()->json($this->response,200);
     }

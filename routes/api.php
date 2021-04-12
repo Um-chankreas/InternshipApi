@@ -44,12 +44,17 @@ Route::post('school/create_schedule',[ScheduleController::class,'create']);
 Route::get('school/showroom',[ScheduleController::class,'showroom']);
 Route::get('school/list',[ScheduleController::class,'listCaditate']);
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/get_user',[AuthController::class,'get_user']);
+// Route::group(['middleware' => ['auth:sanctum']], function () {
+//     // Route::post('/logout', [AuthController::class, 'logout']);
+//     Route::get('/get_user',[AuthController::class,'get_user']);
     
-});
+// });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::middleware('auth:sanctum')->get('/logout', function (Request $request) {
+    $user = $request->user();
+    $user->tokens()->delete();
+    return "Delete Token";
 });
