@@ -19,6 +19,7 @@ class Schedule extends Model
         'company',
         'advisor',
         'email',
-        'studentid'
+        'studentid',
+        'type',
     ];
 }

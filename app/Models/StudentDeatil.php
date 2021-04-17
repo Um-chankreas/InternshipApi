@@ -21,5 +21,6 @@ class StudentDeatil extends Model
         'company',
         'advisor',
         'studentid',
+        'major',
     ];
 }

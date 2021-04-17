@@ -22,15 +22,7 @@ class AuthController extends Controller
                 'message' => 'Bad creds'
             ], 401);
         }
-        // $token = $request->user()->createToken($request->token_name);
-        // $token = $user->createToken($fields['token'])->plainTextToken;
-
-        // $response = [
-        //     'data' => $user,
-        //     'token' => $token->plainTextToken,
-        // ];
-
-        // return response($response, 200);
+        
         return $user->createToken($fields['device_name'])->plainTextToken;
     }
     public function logout(Request $request) {
@@ -44,7 +36,7 @@ class AuthController extends Controller
     {
         $user = auth()->user();
         $this->response['message'] = 'List user login';
-        $this->response['data']=$user;  
+        $this->response['data']=$users;  
         return response()->json($this->response,200);
     }
 }

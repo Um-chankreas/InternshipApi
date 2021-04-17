@@ -15,5 +15,6 @@ class Juryuser extends Model
         'type',
         'major',
         'userid',
+        'room',
     ];
 }

@@ -37,6 +37,7 @@ class StudentController extends Controller
             'email' => $req->email,
             'userid'=>$user->id,
             'studentid'=>$student->id,
+            'major'=>$req->major,
         ]);
         $response = [
             'user' => $user,

@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ScheduleController;
+use App\Models\Schedule;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,9 +30,9 @@ Route::get('school/rating',[SchoolController::class,'rating']);
 
 Route::post('/jury/register',[JuryController::class,'register']);
 Route::post('jury/score',[JuryController::class,'score']);
-Route::get('jury/listStudentDefense',[JuryController::class,'listStudentDefense']);
-Route::get('jury/listscore',[JuryController::class,'listscore']);
 
+Route::get('jury/listscore',[JuryController::class,'listscore']);
+Route::get('/jury/listStudentDefense',[JuryController::class,'listStudentDefense']);
 
 
 // Advisor API
@@ -42,13 +43,7 @@ Route::post('/student/register',[StudentController::class,'register']);
 // Schedule Defense
 Route::post('school/create_schedule',[ScheduleController::class,'create']);
 Route::get('school/showroom',[ScheduleController::class,'showroom']);
-Route::get('school/list',[ScheduleController::class,'listCaditate']);
-
-// Route::group(['middleware' => ['auth:sanctum']], function () {
-//     // Route::post('/logout', [AuthController::class, 'logout']);
-//     Route::get('/get_user',[AuthController::class,'get_user']);
-    
-// });
+Route::get('school/listcandidate',[ScheduleController::class,'listCaditate']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

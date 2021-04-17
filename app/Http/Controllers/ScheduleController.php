@@ -50,7 +50,8 @@ class ScheduleController extends Controller
                 'email'=>$req->email,
                 'company' =>$req->company,
                 'advisor'=>$req->advisor,
-                'studentid'=>$student->id
+                'studentid'=>$student->id,
+                'type'=>$req->type,
                 
             ]);
             $room = $data->room;
@@ -61,9 +62,10 @@ class ScheduleController extends Controller
             $totime = $data->totime;
             $topic = $data->topic;
             $company = $data->company;
+            $major = $data->major;
             $advisor = $data->advisor;
-            DB::update(' UPDATE student_deatils set room=?,generate=? ,defensedate=?,fromtime=?,totime=?,topic=?,company=?,advisor=? where studentid=?',[$room,$generate,
-            $defensedate,$fromtime,$totime,$topic,$company,$advisor,$studentid]);
+            DB::update(' UPDATE student_deatils set room=?,generate=? ,defensedate=?,fromtime=?,totime=?,topic=?,company=?,major=?,advisor=? where studentid=?',[$room,$generate,
+            $defensedate,$fromtime,$totime,$topic,$company,$advisor,$major,$studentid]);
             return response()->json(['status_code'=>200,'message'=>'success']);
         }
     }
@@ -71,15 +73,31 @@ class ScheduleController extends Controller
     public function showroom()
     {
         $room = Schedule::all()->groupBy('room');
+        $room = Schedule::all();
+        // comment code below uncomm
+        // $room = $room->map(function($item, $key){
+        //     return ["room"=>$key,"data"=>$item];
+        //   });
+        //   return response()->json($room,200);
+        // foreach($room as $data["data"]){
+        //     foreach($data["data"] as $key =>$value){
+        //         if(isset($output[$key])){
+        //             ($output[$key]=array());
+        //         }  $this->response[$key][]=$value;
+          
         
-        $rooms = $room->map(function($item, $key){
-            return ["room"=>$key,"data"=>$item];
-          });
-          $room = Schedule::all();
-        $this->response['message'] = 'List room of schedule';
-        $this->response['data']=$room;
+        //         return response()->json($value,200);
+    
+        //     }
+        //     return response()->json($data["data"],200);
+        //     dd($data["data"]);
 
+           
+        // }
+        $this->response['message'] = 'List Student';
+        $this->response['data']=$room;
         return response()->json($this->response,200);
+        
     }
     // Schow Show Cadidate for that have name defense
     public function listCaditate()

@@ -29,6 +29,7 @@ class JuryController extends Controller
             'password' => bcrypt($fields['password']),
             'type'=> $req->type,
             'major'=>$req->major,
+            'room'=>$req->room,
         ]);
         //add jury user 
         $jury = Juryuser::create([
@@ -38,6 +39,7 @@ class JuryController extends Controller
             'type'=> $user->type,
             'major'=>$user->major,
             'userid'=>$user->id,
+            'room'=>$user->room,
         ]);
         $response = [
             'user' => $user,
@@ -94,6 +96,7 @@ class JuryController extends Controller
     }
     public function listStudentDefense()
     {
+        // $user = auth()->user();
         $room = Schedule::all();
         $this->response['message'] = 'List room of schedule';
         $this->response['data']=$room;
