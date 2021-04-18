@@ -39,6 +39,9 @@ Route::get('/jury/listStudentDefense',[JuryController::class,'listStudentDefense
 Route::post('/advisor/register',[AdvisorController::class,'register']);
 // student API
 Route::post('/student/register',[StudentController::class,'register']);
+Route::post('/student/create_project',[StudentController::class,'create_project']);
+Route::get('/student/show_project',[StudentController::class,'show_project']);
+Route::get('/student/get_student',[StudentController::class,'get_student']);
 
 // Schedule Defense
 Route::post('school/create_schedule',[ScheduleController::class,'create']);
