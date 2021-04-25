@@ -18,15 +18,15 @@ class CreateStudentDeatilsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('userid');
-            $table->String('room');
-            $table->String('generate');
-            $table->String('defensedate');
-            $table->String('fromtime');
-            $table->String('totime');
-            $table->String('topic');
-            $table->String('company');
-            $table->String('advisor');
-            $table->string('studentid');
+            $table->String('room')->nullable();
+            $table->String('generate')->nullable();
+            $table->String('defensedate')->nullable();
+            $table->String('fromtime')->nullable();
+            $table->String('totime')->nullable();
+            $table->String('topic')->nullable();
+            $table->String('company')->nullable();
+            $table->String('advisor')->nullable();
+            $table->string('studentid')->nullable();
             $table->timestamps();
         });
     }

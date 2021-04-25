@@ -21,5 +21,6 @@ class Schedule extends Model
         'email',
         'studentid',
         'type',
+        'status',
     ];
 }

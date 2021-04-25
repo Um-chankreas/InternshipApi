@@ -18,15 +18,15 @@ class CreateAdvisorinfosTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('major');
-            $table->string('type');
-            $table->string('advisorId');
-            $table->String('phone');
-            $table->String('skill');
-            $table->String('advise');
-            $table->String('mcacc');
-            $table->String('tech');
-            $table->String('userid');
+            $table->string('major')->nullable();
+            $table->string('type')->nullable();
+            $table->string('advisorId')->nullable();
+            $table->String('phone')->nullable();
+            $table->String('skill')->nullable();
+            $table->String('advise')->nullable();
+            $table->String('mcacc')->nullable();
+            $table->String('tech')->nullable();
+            $table->String('userid')->nullable();
             $table->timestamps();
         });
     }

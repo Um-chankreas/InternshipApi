@@ -15,12 +15,12 @@ class CreateJuryscoreReportsTable extends Migration
     {
         Schema::create('juryscore_reports', function (Blueprint $table) {
             $table->id();
-            $table->String('presentation_skill');
-            $table->String('content_org');
-            $table->String('demonstration_and_question');
-            $table->String('impression');
-            $table->String('comment');
-            $table->String('examiner');
+            $table->String('presentation_skill')->nullable();
+            $table->String('content_org')->nullable();
+            $table->String('demonstration_and_question')->nullable();
+            $table->String('impression')->nullable();
+            $table->String('comment')->nullable();
+            $table->String('examiner')->nullable();
             $table->timestamps();
         });
     }

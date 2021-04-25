@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPresentationSkillToSchedules extends Migration
+class AddStatusToSchedulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,7 @@ class AddPresentationSkillToSchedules extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->String('presentation_skill')->nullable();
-            $table->String('content_org')->nullable();
-            $table->String('demonstration_and_question')->nullable();
-            $table->String('impression')->nullable();
-            $table->String('comment')->nullable();
+            $table->string('status')->default('0');
         });
     }
 

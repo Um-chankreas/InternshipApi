@@ -18,9 +18,9 @@ class CreateAdvisorsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('major');
-            $table->string('type');
-            $table->string('userid');
+            $table->string('major')->nullable();
+            $table->string('type')->nullable();
+            $table->string('userid')->nullable();
             $table->timestamps();
         });
     }

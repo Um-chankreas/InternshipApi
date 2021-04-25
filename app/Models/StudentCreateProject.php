@@ -27,5 +27,6 @@ class StudentCreateProject extends Model
         'agr_status',
         'advisor',
         'userId',
+        'schedule_status',
     ];
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddExaminerToSchedules extends Migration
+class AddSstatusToStudentCreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddExaminerToSchedules extends Migration
      */
     public function up()
     {
-        Schema::table('schedules', function (Blueprint $table) {
-            $table->String('examiner')->nullable();
+        Schema::table('student_create_projects', function (Blueprint $table) {
+            $table->string('sstatus')->default('0');
         });
     }
 
@@ -25,7 +25,7 @@ class AddExaminerToSchedules extends Migration
      */
     public function down()
     {
-        Schema::table('schedules', function (Blueprint $table) {
+        Schema::table('student_create_projects', function (Blueprint $table) {
             //
         });
     }
