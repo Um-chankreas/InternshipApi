@@ -47,6 +47,11 @@ Route::get('/student/student_show_project', [StudentController::class, 'student_
 Route::get('/student/get_student', [StudentController::class, 'get_student']);
 // Student Request Adviosr
 Route::post('/student/req_advisor', [StudentController::class, 'studentRequestadvisor']);
+Route::get('/student/get_request', [StudentController::class, 'get_request']);
+// Advisor rejec
+Route::post('/student/reject', [StudentController::class, 'advisor_reject']);
+Route::post('/student/accept', [StudentController::class, 'advisor_accept']);
+
 
 // Schedule Defense
 Route::post('school/create_schedule', [ScheduleController::class, 'create']);

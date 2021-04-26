@@ -138,4 +138,31 @@ class StudentController extends Controller
         $this->response['data'] = $data;
         return response()->json($this->response, 200);
     }
+    public function get_request()
+    {
+        $data = StudentRequestDadvisor::all();
+        return response()->json($data, 200);
+    }
+    public function advisor_reject(Request $req)
+    {
+        $data = array(
+            'status' => "2",
+            'rejectcomment' => $req->rejectcomment,
+        );
+        $reject = DB::table('student_request_dadvisors')->where('id', $req->id)->update($data);
+        $this->response['message'] = "Rejected";
+        $this->response['data'] = $reject;
+        return response()->json($this->response, 200);
+    }
+    public function advisor_accept(Request $req)
+    {
+        $data = array(
+            'status' => "1",
+            'rejectcomment' => "Okay",
+        );
+        $reject = DB::table('student_request_dadvisors')->where('id', $req->id)->update($data);
+        $this->response['message'] = "Rejected";
+        $this->response['data'] = $reject;
+        return response()->json($this->response, 200);
+    }
 }
