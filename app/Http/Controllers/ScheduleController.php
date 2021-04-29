@@ -35,7 +35,7 @@ class ScheduleController extends Controller
     {
         $data = Schedule::all();
 
-        return response()->json(['data' => $data], 200);
+        return response()->json($data, 200);
     }
     // School Create Room date  for Defense
     public function create_room(Request $request)
@@ -152,7 +152,16 @@ class ScheduleController extends Controller
             'advisor' => $req->advisor,
 
         );
+        $upproject = array(
+            'room' => $req->room,
+            'generate' => $req->generate,
+            'defensedate' => $req->defensedate,
+            'fromtime' => $req->fromtime,
+            'totime' => $req->totime,
+
+        );
         $email = $req->email;
+        DB::table('student_create_projects')->where('email', $email)->update($upproject);
         if (DB::table('schedules')->where('email', $email)->update($data)) {
             return response()->json(['status_code' => 200, 'message' => 'success']);
         }

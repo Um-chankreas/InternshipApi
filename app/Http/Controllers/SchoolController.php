@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SchoolUser;
 use App\Models\Advisorinfo;
+
 class SchoolController extends Controller
 {
     public function register(Request $req)
@@ -19,33 +20,37 @@ class SchoolController extends Controller
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
-            'type'=> $req->type,
-            'major'=>$req->major,
+            'type' => $req->type,
+            'major' => $req->major,
         ]);
         //add school user 
         $school = SchoolUser::create([
             'name' => $user['name'],
             'email' => $user['email'],
             'password' => bcrypt($fields['password']),
-            'type'=> $user->type,
-            'major'=>$user->major,
-            'userid'=>$user->id,
+            'type' => $user->type,
+            'major' => $user->major,
+            'userid' => $user->id,
         ]);
         $response = [
             'user' => $user,
-            'school'=>$school,
+            'school' => $school,
         ];
 
         return response($response, 200);
-
     }
 
     // School Show Advisor Rating
     public function rating()
     {
         $rating = Advisorinfo::all();
+        // $advisor = DB::table("advisorinfos")
+        //     ->join('student_request_dadvisors', 'advisorinfos.userid', '=', 'student_request_dadvisors.advisor_user_id')
+        //     ->select('advisorinfos.*', 'student_request_dadvisors.*')
+        //     ->get();
+
         $response = [
-            'data'=>$rating,
+            'data' => $rating,
         ];
         return response($response, 200);
     }

@@ -51,6 +51,7 @@ class StudentController extends Controller
         $project = StudentCreateProject::create([
             'name' => $req->name,
             'email' => $req->email,
+            'school' => $req->major,
             'userId' => $user->id,
         ]);
         $response = [
