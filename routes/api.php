@@ -8,6 +8,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\MakeAppointmentController;
+use App\Http\Controllers\RequestDefenseController;
 use App\Models\Schedule;
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +77,19 @@ Route::middleware('auth:sanctum')->get('/logout', function (Request $request) {
     $user->tokens()->delete();
     return "Delete Token";
 });
+
+
+// Make Appointment
+Route::post('appointment/request/', [MakeAppointmentController::class, 'request']);
+// advisor Make appointment
+Route::post('appointment/advisor_make/', [MakeAppointmentController::class, 'advisor_make_app']);
+Route::get('appointment/show_app/', [MakeAppointmentController::class, 'show_app']);
+// Comfirm Appoointment
+Route::post('appointment/confrim/', [MakeAppointmentController::class, 'confirm_app']);
+
+// ReuestDefense Controller
+Route::post('requestdefense/request/', [RequestDefenseController::class, 'requestdefense']);
+Route::get('requestdefense/show/', [RequestDefenseController::class, 'show_request_defense']);
+// Accept Defense
+Route::post('requestdefense/accept/', [RequestDefenseController::class, 'advisor_confirm_defense']);
+Route::post('requestdefense/reject/', [RequestDefenseController::class, 'advisor_reject_defense']);

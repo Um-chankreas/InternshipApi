@@ -28,5 +28,6 @@ class StudentCreateProject extends Model
         'advisor',
         'userId',
         'schedule_status',
+        'school'
     ];
 }

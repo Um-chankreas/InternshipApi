@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudentRequestDadvisor extends Model
+class MakeAppointment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'advisor_id',
-        'advisor_user_id',
-        'advisor_name',
+        'meet_date',
+        'student_userid',
         'student_name',
         'student_id',
-        'student_user_id',
+        'desciption',
+        'advisor_id',
+        'advisor_userid',
+        'advisor_name',
         'status',
         'student_email',
         'advisor_email',
+        'request_defense_status',
+        'reason_reject_defense'
     ];
 }

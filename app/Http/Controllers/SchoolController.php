@@ -49,7 +49,7 @@ class SchoolController extends Controller
         //     ->select('advisorinfos.*', 'student_request_dadvisors.*')
         //     ->get();
 
-        $response = [
+        $response = [   
             'data' => $rating,
         ];
         return response($response, 200);

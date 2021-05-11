@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MakeAppointment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\student;
@@ -130,6 +131,8 @@ class StudentController extends Controller
             'advisor_id' => $req->advisor_id,
             'advisor_user_id' => $req->advisor_user_id,
             'advisor_name' => $req->advisor_name,
+            'student_email' => $req->student_email,
+            'advisor_email' => $req->advisor_email,
             'student_name' => $req->student_name,
             'student_id' => $req->student_id,
             'student_user_id' => $req->student_user_id,
@@ -150,6 +153,7 @@ class StudentController extends Controller
             'status' => "2",
             'rejectcomment' => $req->rejectcomment,
         );
+
         $reject = DB::table('student_request_dadvisors')->where('id', $req->id)->update($data);
         $this->response['message'] = "Rejected";
         $this->response['data'] = $reject;
@@ -161,9 +165,21 @@ class StudentController extends Controller
             'status' => "1",
             'rejectcomment' => "Okay",
         );
-        $reject = DB::table('student_request_dadvisors')->where('id', $req->id)->update($data);
-        $this->response['message'] = "Rejected";
-        $this->response['data'] = $reject;
+        MakeAppointment::create([
+            'status' => "1",
+            'advisor_id' => $req->advisor_id,
+            'advisor_userid' => $req->advisor_user_id,
+            'student_id' => $req->student_id,
+            'student_email' => $req->student_email,
+            'advisor_email' => $req->advisor_email,
+            'student_userid' => $req->student_user_id,
+            'student_name' => $req->student_name,
+            'advisor_name' => $req->advisor_name,
+        ]);
+
+        $accept = DB::table('student_request_dadvisors')->where('id', $req->id)->update($data);
+        $this->response['message'] = "Accepted";
+        $this->response['data'] = $accept;
         return response()->json($this->response, 200);
     }
 }
